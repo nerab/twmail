@@ -13,5 +13,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "twmail"
   gem.require_paths = ["lib"]
-  gem.version       = Twmail::VERSION
+  gem.version       = TaskWarriorMail::VERSION
+  
+  gem.add_dependency 'mail', '~> 2.4'
 end

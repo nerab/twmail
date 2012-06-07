@@ -21,7 +21,7 @@ Using eMail for this looks like a great candidate:
 1. Many applications were not made for integration with TaskWarrior. But even the dumbest iPhone app can forward text or a URL via eMail.
 1. eMail is asynchronous by design (fire and forget). Even if disconnected from the net, I can send eMail and the system will deliver it on the very next occassion.
 
-What is missing from a TaskWarrior perspecive right now is a way to add these mails to a TaskWarrior installation automatically.
+What is missing from a TaskWarrior perspective right now is a way to add these mails to a TaskWarrior installation automatically.
 
 ## Architecture
 The simplest solution I could come up with is this:
@@ -41,14 +41,17 @@ As a prerequisite, TaskWarrior is assumed to be installed and configured. With t
 
   As the word `Transaction` implies, the whole operation needs to be atomic per mail. No task must be added if fetching a mail went wrong, and no mail must be deleted if storing the task in TaskWarrior failed.
 
-## Details on the Fetchmail Configuration
-The following fetchmail hook calls TaskWarrior with each mail received:
-
-    task add $subject
-    task annotate $TASK_ID $body # $TASK_ID contains the id of the task created in the line above
-    # TODO Delete mail if the above commands were successful
-
 The solution presented here maintains a one-to-one relation between the INBOX of an mail account and the TaskWarrior database.
+
+TODO Use fetchmail's daemon mode
+
+## Components
+Mail fetching is done with fetchmail, a proven solution available on all major Unices. It will be configured to use the `twmail` script as a mail delivery agent (mda), which means nothing more that fetchmail fetches the mail from the configured account and hands it over to our script. There is no further storage of the received mails except in TaskWarrior.
+
+## Error Handling
+TODO
+* If the MDA returns non-zero, fetchmail will not assume the message to be processed and it will try again.
+* Do we need a dead-letter queue for all mails fetched, but not successfully processed?
 
 ## Alternatives
 One might think of more elaborate applications that do more clever things, but I wanted to create this solution with as few external dependencies as possible. Fetchmail is available on all t Unices, and who can afford to live without TaskWarrior anyway? I also played with the thought of a central tasks server that receives mail from services like CloudMailIn and auto-adds them to the server, but the result would not be much different (besides being more complex) to the solution presented here: No task will be fetched into TaskWarrior until the machine with the TaskWarrior database is online.
@@ -65,7 +68,9 @@ As an example, here is a simple way to route eMails to different projects in Tas
   1.1. "Get Rich Fast" folder if the mail subject contains "project:GetRichFast"
 1. Tell `twmail` to fetch mails from the "Build Bikeshed", "Reading List", and "Get Rich Fast" IMAP folders (in addition to the INBOX):
 
-TODO Continue ...
+TODO Continue description ...
+
+The approach chosen for `twmail` also addresses SPAM filtering. Handling that remains the responsibility of the mail server. Anything that makes it to the INBOX is treated as task.
 
 ## Contributing
 

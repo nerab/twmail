@@ -1,5 +1,7 @@
+require 'mail'
+
 require "twmail/version"
 
-module Twmail
+module TaskWarriorMail
   # Your code goes here...
 end

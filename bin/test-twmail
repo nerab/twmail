@@ -1,0 +1,16 @@
+# Beware: Pseudo-code still ...
+
+# setup: keep the test data separate
+export TASKDATA=tmp/.task 
+
+# run twmail with fixture data
+twmail < test/fixtures/sample.txt
+
+# read back by exporting the just added task
+task export LATEST
+
+# assert that we actually imported
+assert_equal "Tweet from @vowe", 
+
+# teardown: undo changes
+task rc.confirmation:no undo
