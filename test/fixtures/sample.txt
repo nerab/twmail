@@ -1,0 +1,103 @@
+Delivered-To: task@example.com
+Received: from gmail-imap.l.google.com [173.194.70.109]
+	by macbook.lan with IMAP (fetchmail-6.3.11)
+	for <nerab@localhost> (single-drop); Thu, 07 Jun 2012 21:03:10 +0200 (CEST)
+Received: by 10.14.182.73 with SMTP id n49csp63646eem; Thu, 7 Jun 2012
+ 11:56:43 -0700 (PDT)
+Received: by 10.182.159.5 with SMTP id wy5mr3401928obb.24.1339095403175; Thu,
+ 07 Jun 2012 11:56:43 -0700 (PDT)
+Return-Path: <nerab@example.com>
+Received: from mail-ob0-f172.google.com (mail-ob0-f172.google.com
+ [209.85.214.172]) by mx.google.com with ESMTPS id
+ 1si3117525oeu.35.2012.06.07.11.56.42 (version=TLSv1/SSLv3 cipher=OTHER); Thu,
+ 07 Jun 2012 11:56:43 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.214.172 is neither permitted nor
+ denied by best guess record for domain of nerab@example.com)
+ client-ip=209.85.214.172;
+Authentication-Results: mx.google.com; spf=neutral (google.com: 209.85.214.172
+ is neither permitted nor denied by best guess record for domain of
+ nerab@example.com) smtp.mail=nerab@example.com
+Received: by obbeh20 with SMTP id eh20so1851856obb.17 for
+ <task@example.com>; Thu, 07 Jun 2012 11:56:42 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com;
+ s=20120113;
+ h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+ :content-type:x-gm-message-state;
+ bh=Zik8//wqQDjrcuz1i2EtJsytJsADq+w7QEn49F0Fssc=;
+ b=F5Ys+65pUzTsm0/2GE2ZzPNsOLy+m8L7M4FAn5WK6gHJvadgraaV/kKwrOL1DjEI/P
+ Hm6gR/EfJ1OzdRyJez1piIzuqjNE10wHjpj1z4WpdaBkV9f492UsQjpPzh4KkdqVCTnD
+ hTYI8U+92kjVobzv970DfKjl6mIIjB1w1J07wZebKiOQvFVxtLPJG4F+6gPeZrIQb3Px
+ t7IjiZP4oD4lXxrUNa16MPCUa/GaNUK20gkH9tPqprvxYFY3RkShYgwcg7rkZPI1y5O6
+ 6aU1X97z2vtu5rjjxlULmICYph5Q+w79rE8l5Yo7/5vLD5L5WhNVcg5USswFQcurwVD5 KPuA==
+MIME-Version: 1.0
+Received: by 10.182.149.9 with SMTP id tw9mr3386169obb.45.1339095402307; Thu,
+ 07 Jun 2012 11:56:42 -0700 (PDT)
+Received: by 10.60.12.202 with HTTP; Thu, 7 Jun 2012 11:56:42 -0700 (PDT)
+In-Reply-To: <-8507380321590458545@unknownmsgid>
+References: <-8507380321590458545@unknownmsgid>
+Date: Thu, 7 Jun 2012 20:56:42 +0200
+Message-ID: <CAM4tTWt9k-tN0ZcDT2uAUOeFA99xxx5OJPHrGxPL7iv0f+C1vw@mail.gmail.com>
+Subject: Tweet from @vowe
+From: "Rabenau, Nicholas" <nerab@example.com>
+To: task@example.com
+Content-Type: multipart/alternative; boundary=14dae9399c39c65f2404c1e67112
+X-Gm-Message-State: ALoCoQkG/sNuH0kTu1or/KcNwrOLG9ecgMAgzYk3yv3BK0DRrreoPKKuCJlOpU4f5c8d6zx1Vvs6
+
+--14dae9399c39c65f2404c1e67112
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+New on vowe dot net :: This is where I am. Right now. ::
+http://t.co/tRGDcIJS
+
+http://twitter.com/#!/vowe/status/210741405910441984
+
+Sent from Echofon - http://www.echofon.com/
+
+
+Gru=C3=9F
+
+nerab
+
+
+
+--=20
+http://www.example.com
+
+=C2=BBThere is always a well-known solution to every human problem =E2=80=
+=94 neat,
+plausible, and wrong.=C2=AB - H. L.
+Mencken<http://en.wikiquote.org/wiki/H._L._Mencken>
+
+--14dae9399c39c65f2404c1e67112
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<br><br><div class=3D"gmail_quote">---------- Forwarded message ----------<=
+br>From: <b class=3D"gmail_sendername">Nicholas Rabenau</b> <span dir=3D"ltr">=
+&lt;<a href=3D"mailto:nerab@example.com">nerab@example.com<=
+/a>&gt;</span><br>
+Date: Thu, Jun 7, 2012 at 5:47 PM<br>Subject: Tweet from @vowe<br>To: Rabena=
+u nerab &lt;<a href=3D"mailto:nerab@example.com">nerab@example.com</a>&gt;<b=
+r><br><br>New on vowe dot net :: This is where I am. Right now. :: <a href=3=
+D"http://t.co/tRGDcIJS" target=3D"_blank">http://t.co/tRGDcIJS</a><br>
+
+<br>
+<a href=3D"http://twitter.com/#!/vowe/status/210741405910441984" target=3D"=
+_blank">http://twitter.com/#!/vowe/status/210741405910441984</a><br>
+<br>
+Sent from Echofon - <a href=3D"http://www.echofon.com/" target=3D"_blank">h=
+ttp://www.echofon.com/</a><br>
+<br>
+<br>
+Gru=C3=9F<br>
+<span class=3D"HOEnZb"><font color=3D"#888888"><br>
+nerab<br>
+</font></span></div><br><br clear=3D"all"><div><br></div>-- <br><a href=3D"=
+http://www.example.com" target=3D"_blank">http://www.example.com</a><br><br=
+>=C2=BBThere is always a well-known solution to every human problem =E2=80==
+94 neat, plausible, and wrong.=C2=AB - <a href=3D"http://en.wikiquote.org/w=
+iki/H._L._Mencken" target=3D"_blank">H. L. Mencken</a><br>
+
+
+--14dae9399c39c65f2404c1e67112--
