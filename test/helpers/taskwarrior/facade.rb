@@ -1,3 +1,5 @@
+require 'json'
+
 module TaskWarrior
   class Facade
     def initialize(config_file)
@@ -5,10 +7,20 @@ module TaskWarrior
     end
     
     def tasks
-      JSON.parse(%x[task rc:#{@config_file} export.json]).each_with_object([]){|result, t|
+      JSON.parse(export).each_with_object([]){|result, t|
         result << TaskMapper.map(t)
       }
-      result
+    end
+    
+    private
+    def exec(cmd)
+      %x[task rc.verbose=nothing rc:#{@config_file} #{cmd}]
+    end
+    
+    def export
+      exec('export').tap{|result|
+        result << '{}' if result.empty?
+      }
     end
   end
 end
