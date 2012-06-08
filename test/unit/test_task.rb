@@ -1,4 +1,6 @@
 require 'test_helper'
+require 'date'
+require 'active_support/core_ext'
 
 class TestTask < TaskWarriorMailTest::TestCase
   def setup
@@ -33,12 +35,56 @@ class TestTask < TaskWarriorMailTest::TestCase
     @task.uuid = 'abcdefg'
     assert_invalid(@task)
   end
+
+  def test_task_entry_nil
+    @task.entry = nil
+    assert_invalid(@task)
+  end
+
+  def test_task_entry_empty
+    @task.entry = ''
+    assert_invalid(@task)
+  end
+
+  def test_task_entry_wrong_format
+    @task.entry = "foobar"
+    assert_invalid(@task)
+  end
+
+  def test_task_entry_future
+    @task.entry = DateTime.now.advance(:days => 1)
+    assert_invalid(@task)
+  end
+
+  def test_task_status_nil
+    @task.status = nil
+    assert_invalid(@task)
+  end
+
+  def test_task_status_empty
+    @task.status = ''
+    assert_invalid(@task)
+  end
+
+  def test_task_status_unknown_string
+    @task.status = "foobar"
+    assert_invalid(@task)
+  end
+
+  def test_task_status_unknown_symbol
+    @task.status = :foobar
+    assert_invalid(@task)
+  end
   
   def test_task_valid
-    assert(@task.valid?, error_message(@task.errors))
+    assert_valid(@task)
   end
 
   private
+  def assert_valid(task)
+    assert(@task.valid?, error_message(@task.errors))
+  end
+  
   def assert_invalid(task)
     assert(task.invalid?, 'Expect validation to fail')
   end

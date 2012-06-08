@@ -1,8 +1,7 @@
 require 'test_helper'
-
 require 'tmpdir'
 
-class TestFacade < TaskWarriorMailTest::TestCase
+class TestRepository < TaskWarriorMailTest::TestCase
   def setup
     @tmp_dir = Dir.mktmpdir
     @taskrc_file = File.join(@tmp_dir, '.taskrc')
@@ -12,7 +11,7 @@ class TestFacade < TaskWarriorMailTest::TestCase
       f.write("data.location=#{@tmp_dir}")
     }    
     
-    @tw = TaskWarrior::Facade.new(@taskrc_file)
+    @tw = TaskWarrior::Repository.new(@taskrc_file)
   end
   
   def teardown

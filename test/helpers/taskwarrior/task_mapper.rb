@@ -1,4 +1,7 @@
 module TaskWarrior
+  #
+  # A DataMapper that makes new Tasks from a JSON representation
+  #
   class TaskMapper
     class << self
       def map(json)
