@@ -1,7 +1,7 @@
-require 'test/unit'
-
 require 'bundler'
 Bundler.require
+
+require 'test/unit'
 
 module TaskWarriorMailTest
   class TestCase < Test::Unit::TestCase

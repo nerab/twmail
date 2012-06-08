@@ -6,8 +6,12 @@ module TaskWarrior
       @config_file = config_file
     end
     
+    def <<(task)
+      exec("add #{task.description}")
+    end
+    
     def tasks
-      JSON.parse(export).each_with_object([]){|result, t|
+      JSON.parse("[#{(exec('export'))}]").each_with_object([]){|t, result|
         result << TaskMapper.map(t)
       }
     end
@@ -15,12 +19,6 @@ module TaskWarrior
     private
     def exec(cmd)
       %x[task rc.verbose=nothing rc:#{@config_file} #{cmd}]
-    end
-    
-    def export
-      exec('export').tap{|result|
-        result << '{}' if result.empty?
-      }
     end
   end
 end

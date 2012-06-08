@@ -6,29 +6,9 @@ require 'taskwarrior/facade'
 require 'taskwarrior/task'
 require 'taskwarrior/task_mapper'
 
-
-# Beware: Pseudo-code still ...
-
-# setup: keep the test data separate
-#export TASKDATA=tmp/.task 
-
-# run twmail with fixture data
-#twmail < test/fixtures/sample.txt
-
-# read back by exporting the just added task
-#task export LATEST
-
-# assert that we actually imported
-#assert_equal "Tweet from @vowe", 
-
-# teardown: undo changes
-#task rc.confirmation:no undo
-
 class TestFacade < TaskWarriorMailTest::TestCase
   def setup
     @tmp_dir = Dir.mktmpdir
-    #puts "all work done in #{@tmp_dir}"    
-    
     @taskrc_file = File.join(@tmp_dir, '.taskrc')
     
     # write our tmp path to the taskrc file
@@ -47,5 +27,22 @@ class TestFacade < TaskWarriorMailTest::TestCase
     tasks = @tw.tasks
     assert_not_nil(tasks)
     assert_equal(0, tasks.size)
+  end
+  
+  def test_tasks_single
+    desc = 'Fetch water'
+    t = TaskWarrior::Task.new(desc)
+    @tw << t
+    
+    tasks = @tw.tasks
+    assert_not_nil(tasks)
+    assert_equal(1, tasks.size)
+    
+    first_task = tasks.first
+    assert_not_nil(first_task)
+    assert_equal(desc, first_task.description)
+    assert(first_task.valid?)
+    assert_in_delta(DateTime.now, first_task.entry, 0.01)
+    assert_equal(:pending, first_task.status)
   end
 end

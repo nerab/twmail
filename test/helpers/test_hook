@@ -1,0 +1,2 @@
+#!/bin/bash
+task $(~/bin/task-uuid add $TWMAIL_SUBJECT) annotate $TWMAIL_BODY
