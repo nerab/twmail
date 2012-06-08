@@ -1,6 +1,4 @@
-require File.join(File.dirname(__FILE__), '..', 'helper')
-
-require 'taskwarrior/task'
+require 'test_helper'
 
 class TestTask < TaskWarriorMailTest::TestCase
   def setup
@@ -18,6 +16,21 @@ class TestTask < TaskWarriorMailTest::TestCase
   
   def test_task_id_0
     @task.id = 0
+    assert_invalid(@task)
+  end
+  
+  def test_task_uuid_nil
+    @task.uuid = nil
+    assert_invalid(@task)
+  end
+  
+  def test_task_uuid_empty
+    @task.uuid = ''
+    assert_invalid(@task)
+  end
+  
+  def test_task_uuid_wrong_format
+    @task.uuid = 'abcdefg'
     assert_invalid(@task)
   end
   
