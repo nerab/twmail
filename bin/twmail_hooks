@@ -18,10 +18,7 @@ mail = Mail.new(ARGF.read)
 # The hook to be executed is read from the environment variable TWMAIL_HOOK
 # If none is set, this script will assume that twmail_on_new_mail is in the
 # $PATH and executable.
-cmd = ENV["TWMAIL_HOOK"] || 'twmail_on_new_mail'
+cmd = ENV["TWMAIL_HOOK"] || 'twmail_hook'
 
 # Call hook script
 puts %x[#{cmd}]
-
-# Test this script with 
-# TWMAIL_HOOK=test/helpers/test_hook cat test/fixtures/sample.txt|bin/twmail_call_hooks

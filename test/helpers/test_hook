@@ -1,2 +1,3 @@
 #!/bin/bash
-task $(~/bin/task-uuid add $TWMAIL_SUBJECT) annotate $TWMAIL_BODY
+# Assumes that task-uuid is in the path
+task $(task-uuid add $TWMAIL_SUBJECT) annotate $TWMAIL_BODY

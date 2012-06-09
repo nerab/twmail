@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#
+# Unit test for twmail_hooks
+#
+DATA_DIR=$(mktemp -dt $(basename $0))
+TASKRC=$(mktemp -t taskrc)
+
+echo > $TASKRC <<HERE
+data.location=$DATA_DIR
+rc.json.array=on
+rc.verbose=off 
+HERE
+
+echo Using test taskrc in $TASKRC:
+cat $TASKRC
+
+# Create new task
+cat test/fixtures/mail01.txt|bin/twmail_hooks
+
+# Read back and run assertions
+TWMAIL_HOOK=test/helpers/test_hook task task rc:$TASKRC export # | ruby -r json -e "puts JSON[ARGF.read]"
+
+# Clean up
+rm -Rf 
