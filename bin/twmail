@@ -6,4 +6,5 @@ Bundler.require
 # This script is a dead-simple Mail Delivery Agent (MDA) that parses the received email
 # and creates a new TaskWarrior task from the subject of the mail.
 mail = Mail.new(ARGF.read)
-%x[task add \"#{mail.subject}\"]
+task_uuid = %x[task-uuid \"#{mail.subject}\"]
+%x[task '#{task_uuid}' annotate \"#{mail.body}\"]

@@ -1,0 +1,4 @@
+function assert_equal()
+{
+  diff <(echo "$2" ) <(echo "$1") || [ "$?" -eq 0 ] || exit 1
+}

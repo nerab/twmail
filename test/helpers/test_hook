@@ -1,3 +1,16 @@
 #!/bin/bash
-# Assumes that task-uuid is in the path
-task $(task-uuid add $TWMAIL_SUBJECT) annotate $TWMAIL_BODY
+#
+# twmail hook script that is called for every mail.
+#
+# The environment variables available to a hook are:
+#
+# TWMAIL_DATE
+# TWMAIL_MESSAGE_ID
+# TWMAIL_FROM
+# TWMAIL_TO
+# TWMAIL_SUBJECT
+# TWMAIL_BODY
+#
+# This script assumes that task-uuid is in the path.
+#
+task $(task-uuid $TWMAIL_SUBJECT) annotate $TWMAIL_BODY > /dev/null

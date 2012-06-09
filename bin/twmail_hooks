@@ -21,4 +21,4 @@ mail = Mail.new(ARGF.read)
 cmd = ENV["TWMAIL_HOOK"] || 'twmail_hook'
 
 # Call hook script
-puts %x[#{cmd}]
+%x[#{cmd}]

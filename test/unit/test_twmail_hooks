@@ -3,23 +3,32 @@
 #
 # Unit test for twmail_hooks
 #
-DATA_DIR=$(mktemp -dt $(basename $0))
-TASKRC=$(mktemp -t taskrc)
 
-echo > $TASKRC <<HERE
+# Data locations
+DIRNAME=$(cd $(dirname $0);pwd)
+DATA_DIR=$(mktemp -dt $(basename $0))
+export TASKRC=$(mktemp -t taskrc)
+
+source $DIRNAME/../helpers/assertions
+
+# Create custom taskrc
+cat > $TASKRC <<HERE
 data.location=$DATA_DIR
-rc.json.array=on
-rc.verbose=off 
+json.array=on
+verbose=off
 HERE
 
-echo Using test taskrc in $TASKRC:
-cat $TASKRC
+# Canonical path to test_hook
+export TWMAIL_HOOK=$DIRNAME/../helpers/test_hook
 
-# Create new task
-cat test/fixtures/mail01.txt|bin/twmail_hooks
+# Create new task using mail fixture
+cat $DIRNAME/../fixtures/mail01.txt | $DIRNAME/../../bin/twmail_hooks
 
 # Read back and run assertions
-TWMAIL_HOOK=test/helpers/test_hook task task rc:$TASKRC export # | ruby -r json -e "puts JSON[ARGF.read]"
+SUBJECT=$(task export | ruby -r json -e "puts JSON[ARGF.read].first['description']")
+
+assert_equal "Send some test mails" "$SUBJECT"
 
 # Clean up
-rm -Rf 
+rm -Rf $DATA_DIR
+rm -Rf $TASKRC

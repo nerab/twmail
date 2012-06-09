@@ -44,19 +44,21 @@ As a prerequisite, TaskWarrior is assumed to be installed and configured. With t
 The solution presented here maintains a one-to-one relation between the INBOX of an mail account and the TaskWarrior database.
 
 TODO Use fetchmail's daemon mode
+TODO Use fetchmail's IMAP IDLE flag
 
 ## Components
 Mail fetching is done with fetchmail, a proven solution available on all major Unices. It will be configured to use the `twmail` script as a mail delivery agent (mda), which means nothing more that fetchmail fetches the mail from the configured account and hands it over to our script. There is no further storage of the received mails except in TaskWarrior.
 
 ## Error Handling
-TODO
-* If the MDA returns non-zero, fetchmail will not assume the message to be processed and it will try again.
-* Do we need a dead-letter queue for all mails fetched, but not successfully processed?
+If our MDA returns non-zero, fetchmail will not assume the message to be processed and it will try again.
+
+TODO Do we need a dedicated dead-letter queue for all mails fetched, but not successfully processed?
 
 ## Alternatives
 One might think of more elaborate applications that do more clever things, but I wanted to create this solution with as few external dependencies as possible. Fetchmail is available on all t Unices, and who can afford to live without TaskWarrior anyway? I also played with the thought of a central tasks server that receives mail from services like CloudMailIn and auto-adds them to the server, but the result would not be much different (besides being more complex) to the solution presented here: No task will be fetched into TaskWarrior until the machine with the TaskWarrior database is online.
 
 ## Advanced Usage
+### Filtering and Routing
 Many more advanced use cases like filtering and routing can be implemented on the mail server side. There are plenty of user interfaces for routing eMails based on their subject, sender, body text, etc. The simplest way to integrate these features with `twmail` is to use IMAP folders. After all filtering and routing, each eMail must end up in a dedicated IMAP folder (by default, all tasks are fetched from the INBOX folder). `twmail` can then be configured to do different things depending on which IMAP folder a mail came from.
 
 As an example, here is a simple way to route eMails to different projects in TaskWarrior, based on their subject line:
@@ -71,6 +73,39 @@ As an example, here is a simple way to route eMails to different projects in Tas
 TODO Continue description ...
 
 The approach chosen for `twmail` also addresses SPAM filtering. Handling that remains the responsibility of the mail server. Anything that makes it to the INBOX is treated as task.
+
+### Hooks
+twmail comes with an advanced implementation that supports hooks. This makes handling incoming mail very simple for someone familiar with shell scripting, and there is no need to edit the supplied scripts. 
+
+When fetchmail is configured to use `twmail_hooks` instead of `twmail`, the script will call the `twmail_hook` command (must be in the user's `$PATH`). Within the hook script, the fields of the parsed email are available as environment variables:
+
+    TWMAIL_DATE
+    TWMAIL_MESSAGE_ID
+    TWMAIL_FROM
+    TWMAIL_TO
+    TWMAIL_SUBJECT
+    TWMAIL_BODY
+
+Have a look at test/helpers/test_hook for a very simple implementation.
+
+If you prefer a hook with a different name, specify it in the TWMAIL_HOOK environment variable in your `.fetchmailrc`. For example, if your home directory contains a script called `taskwarrior-import.sh`, edit the `mda` line to look like this:
+
+    mda TWMAIL_HOOK=~/taskwarrior-import.sh twmail_hooks
+
+## Housekeeping
+By default fetchmail will mark retrieved messages as read, but leave them on the server. For housekeeping purposes, it may be desirable to delete messages from the server once they were successfully imported into TaskWarrior.
+
+There are two ways to achieve this:
+
+1. Create a filter on the server side that deletes all read mail to a dedicated folder (perhaps "Archive" or "Trash"), or simply deletes it.
+1. Run fetchmail with the --nokeep option, which will delete retrieved messages from the server.
+
+Which option to choose depends on the capabilities of your mail server (Google Mail cannot handle mails based on their read status), and on your level of trust in twmail. I recommend leaving mails on the server until you are confident that everything works as expected.
+
+## Testing
+twmail comes with a basic set of tests.
+
+TODO Provide an alternative fetchmailrc with a different account for test purposes.
 
 ## Contributing
 
