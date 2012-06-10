@@ -31,6 +31,9 @@ class TestHelpers < Test::Unit::TestCase
     begin
       input_file.write(contents.to_json)
       input_file.close
+      
+      # TODO Replace temp file with in-process version
+#      exec("import <(echo '#{contents.to_json}')")
       exec("import #{input_file.path}")
       
       tasks = export_tasks
