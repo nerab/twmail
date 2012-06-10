@@ -12,7 +12,7 @@ mail = Mail.new(ARGF.read)
 %w[date message_id from to subject body].each{|field|
   value = mail.send(field.to_sym)
   value = value.join(',') if value.respond_to?(:join)
-  ENV["TWMAIL_#{field.upcase}"] = value.to_s
+  ENV["TWMAIL_#{field.upcase}"] = Shellwords.escape(value.to_s)
 }
 
 # The hook to be executed is read from the environment variable TWMAIL_HOOK

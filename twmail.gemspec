@@ -17,5 +17,6 @@ Gem::Specification.new do |gem|
   
   gem.add_dependency 'mail', '~> 2.4'
   gem.add_dependency 'json', '~> 1.7'
-  gem.add_dependency 'guard-test', '~> 0.5'
+  gem.add_development_dependency 'guard-test', '~> 0.5'
+  gem.add_development_dependency 'pry', '~> 0.9'
 end
