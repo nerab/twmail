@@ -1,0 +1,51 @@
+Delivered-To: tasks@example.com
+Received: by 10.114.10.161 with SMTP id j1csp21288ldb;
+        Mon, 18 Jun 2012 13:14:55 -0700 (PDT)
+Received: by 10.14.127.78 with SMTP id c54mr3708525eei.8.1340050495549;
+        Mon, 18 Jun 2012 13:14:55 -0700 (PDT)
+Return-Path: <me@example.com>
+Received: from mail-ey0-f169.google.com (mail-ey0-f169.google.com [209.85.215.169])
+        by mx.google.com with ESMTPS id x56si9033076eea.113.2012.06.18.13.14.55
+        (version=TLSv1/SSLv3 cipher=OTHER);
+        Mon, 18 Jun 2012 13:14:55 -0700 (PDT)
+Received-SPF: neutral (google.com: 209.85.215.169 is neither permitted nor denied by best guess record for domain of me@example.com) client-ip=209.85.215.169;
+Authentication-Results: mx.google.com; spf=neutral (google.com: 209.85.215.169 is neither permitted nor denied by best guess record for domain of me@example.com) smtp.mail=me@example.com
+Received: by mail-ey0-f169.google.com with SMTP id n1so2188326eaa.14
+        for <tasks@example.com>; Mon, 18 Jun 2012 13:14:55 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20120113;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :content-type:x-gm-message-state;
+        bh=HGJBh8/Crr0seSrFWydAI8oCFc4xArE2Jq3QQVN95dw=;
+        b=dUFJw97Rdl3YmS76UyedEXNzd0N1eBxycuG0ORkziZZSWOxeRXKIDT6VyARvXhMLUi
+         iya45etC8ebyLAEfusKEMSBwF1ejTY5p6cVhonJLs0l96qFiUcDi7SVmcvtI6a8ziEc9
+         6MI/Tt77mA5RgRaKXTwsedOA492Mj+6dK+SLsJ5m09PMdi4Z3YQnFILql2kWamlcsBr+
+         /FMh7tnc/7hSL+WdYoyxwmXcmub5xV4f7IUUZvxeH1WxN6Twz4CfvaUhZnGkCHXNGuuB
+         GrVKgamhQIYd7b8Z6cvmee0rqXKf6BMdDJjD+m4BlyV+SfnJan9QTq63K/oWsm32YqeS
+         diww==
+MIME-Version: 1.0
+Received: by 10.14.101.144 with SMTP id b16mr3667426eeg.225.1340050495077;
+ Mon, 18 Jun 2012 13:14:55 -0700 (PDT)
+Received: by 10.14.188.4 with HTTP; Mon, 18 Jun 2012 13:14:54 -0700 (PDT)
+In-Reply-To: <-4460535785096073142@unknownmsgid>
+References: <-4460535785096073142@unknownmsgid>
+Date: Mon, 18 Jun 2012 22:14:54 +0200
+Message-ID: <CAB-EwyF1hqX-mxUbWJhnoSUJEujDcrKxMLniu1A3bcwXcOu+FQ@mail.gmail.com>
+Subject: MenTaLguY: Atomic Operations in Ruby
+From: "Manager, Task" <me@example.com>
+To: tasks@example.com
+Content-Type: multipart/alternative; boundary=bcaec52159cbbd7c5604c2c4d12e
+X-Gm-Message-State: ALoCoQlzDmf72YrZHQ3V3HLPVE8Ns0aUW57/V9kuNazVRUWCeSYx2tv7Nrd9om55ZUhhs0cW3tYL
+
+--bcaec52159cbbd7c5604c2c4d12e
+Content-Type: text/plain; charset=ISO-8859-1
+
+http://moonbase.rydia.net/mental/blog/programming/atomic-operations-in-ruby.html
+
+--bcaec52159cbbd7c5604c2c4d12e
+Content-Type: text/html; charset=ISO-8859-1
+
+<div class="gmail_quote"><a href="http://moonbase.rydia.net/mental/blog/programming/atomic-operations-in-ruby.html" target="_blank">http://moonbase.rydia.net/mental/blog/programming/atomic-operations-in-ruby.html</a><br><br>
+</div>
+
+--bcaec52159cbbd7c5604c2c4d12e--

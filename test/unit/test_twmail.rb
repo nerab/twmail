@@ -57,6 +57,19 @@ class TestHelpers < Test::Unit::TestCase
     assert(tasks.first['annotations'].first.to_s =~ /Nigeria/)
   end
 
+  def test_multipart
+    result = deliver_fixture(0, fixture('mail_multipart.txt'))
+    assert_empty(result)
+    assert_equal(1, exec('count').to_i)
+    
+    tasks = export_tasks
+    assert_equal(1, tasks.size)
+    assert_equal('MenTaLguY: Atomic Operations in Ruby', tasks.first['description'])
+    
+    assert_equal(1, tasks.first['annotations'].size)
+    assert(tasks.first['annotations'].first.to_s =~ /atomic/)
+  end
+
 #  def test_missing_fixture
 #    result = assert_fixture(1, 'missing fixture')
 #    assert_empty(result)

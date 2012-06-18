@@ -10,7 +10,7 @@
 
 1. Install ruby and this gem
 1. If you don't have a `~/.fetchmailrc` yet, copy `doc/fetchmailrc.sample` to `~/.fetchmailrc`
-1. Edit `~/.fetchmailrc` and adjust mail account settings. If in doubt, consult the `fetchmail` documentation, e.g. by executing `man fetchmailconf` in a terminal.
+1. Edit `~/.fetchmailrc` and adjust mail account settings (the example was made for Google Mail account). If in doubt, consult the `fetchmail` documentation, e.g. by executing `man fetchmailconf` in a terminal.
 
 ## Motivation
 I would like to add new tasks to my TaskWarrior inbox from remote places where I don't have immediate access to my personal TaskWarrior database; e.g. from my iPhone, from work (where I don't have access to my personal TaskWarrior installation) or from another computer. 
@@ -43,9 +43,9 @@ As a prerequisite, TaskWarrior is assumed to be installed and configured. With t
 
 The solution presented here maintains a one-to-one relation between the INBOX of an mail account and the TaskWarrior database.
 
-TODO Use fetchmail's daemon mode
+TODO Describe how to use fetchmail's daemon mode
 
-TODO Use fetchmail's IMAP IDLE flag
+TODO Describe how to use fetchmail's IMAP IDLE flag
 
 ## Components
 Mail fetching is done with `fetchmail`, a proven solution available on all major Unices incl. MacOS. It will be configured to use the `twmail` script as a mail delivery agent (mda), which means nothing more than that `fetchmail` fetches the mail from the configured account and hands it over to our script. There is no further storage of the received mails except in TaskWarrior.
@@ -106,9 +106,7 @@ There are two ways to achieve this:
 Which option to choose depends on the capabilities of your mail server (Google Mail cannot handle mails based on their read status), and on your level of trust in `twmail`. I recommend leaving mails on the server until you are confident that everything works as expected.
 
 ## Testing
-`twmail` comes with a basic set of tests.
-
-TODO Provide an alternative fetchmailrc with a different account for test purposes.
+`twmail` comes with a basic set of tests. Execute them by running `rake` in the cloned source repo.
 
 ## Contributing
 
