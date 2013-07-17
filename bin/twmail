@@ -7,5 +7,10 @@ Bundler.require
 # and creates a new TaskWarrior task from the subject of the mail.
 mail = Mail.new(ARGF.read)
 task_uuid = %x[task-uuid \"#{mail.subject}\"]
-body = mail.text? ? mail.body : mail.text_part.body
+
+body = mail.text? ? mail.body : mail.text_part.body.decoded
+
+SEPARATOR = '-- '
+body = body.split(SEPARATOR)[0] if (body.include?(SEPARATOR))
+
 %x[task '#{task_uuid}' annotate \"#{body}\"]

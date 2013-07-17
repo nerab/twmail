@@ -1,0 +1,46 @@
+Delivered-To: task@example.com
+Received: by 10.152.29.4 with SMTP id f4csp2763lah;
+        Sat, 13 Jul 2013 13:33:13 -0700 (PDT)
+X-Received: by 10.14.177.196 with SMTP id d44mr52014105eem.35.1373747593216;
+        Sat, 13 Jul 2013 13:33:13 -0700 (PDT)
+Return-Path: <john.doe@example.com>
+Received: from mail-ee0-f45.google.com (mail-ee0-f45.google.com [74.125.83.45])
+        by mx.google.com with ESMTPS id 47si37216650eeu.98.2013.07.13.13.33.12
+        for <task@example.com>
+        (version=TLSv1 cipher=ECDHE-RSA-RC4-SHA bits=128/128);
+        Sat, 13 Jul 2013 13:33:13 -0700 (PDT)
+Received-SPF: neutral (google.com: 74.125.83.45 is neither permitted nor denied by best guess record for domain of john.doe@example.com) client-ip=74.125.83.45;
+Authentication-Results: mx.google.com;
+       spf=neutral (google.com: 74.125.83.45 is neither permitted nor denied by best guess record for domain of john.doe@example.com) smtp.mail=john.doe@example.com
+Received: by mail-ee0-f45.google.com with SMTP id c1so6851062eek.32
+        for <task@example.com>; Sat, 13 Jul 2013 13:33:12 -0700 (PDT)
+MIME-Version: 1.0
+X-Received: by 10.14.183.135 with SMTP id q7mr51321537eem.97.1373747592866;
+ Sat, 13 Jul 2013 13:33:12 -0700 (PDT)
+Received: by 10.14.136.203 with HTTP; Sat, 13 Jul 2013 13:33:12 -0700 (PDT)
+Date: Sat, 13 Jul 2013 22:33:12 +0200
+Message-ID: <CAM4tTWv5Jd--NTSTGRvLeO+0vGHjPdm0W7Z36PuN1KPvL4+q=A@mail.gmail.com>
+Subject: Try IFTTT / PinReadable +kindle
+From: "Doe, John" <john.doe@example.com>
+To: "task@example.com" <task@example.com>
+Content-Type: multipart/alternative; boundary=047d7b34385e48d21704e16a89ba
+
+--047d7b34385e48d21704e16a89ba
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+https://ifttt.com/recipes/20357
+
+--=20
+Mit freundlichen Gr=C3=BCssen
+
+John Doe
+
+--047d7b34385e48d21704e16a89ba
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<a href=3D"https://ifttt.com/recipes/20357">https://ifttt.com/recipes/20357=
+</a><br><br>-- <br>Mit freundlichen Gr=C3=BCssen<p>John Doe<br></p>
+
+--047d7b34385e48d21704e16a89ba--
