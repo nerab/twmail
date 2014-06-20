@@ -57,10 +57,10 @@ class TestHelpers < TaskWarrior::Test::Integration::TestCase
     assert_true(task['tags'].include?('kindle'))
   end
 
-#  def test_missing_fixture
-#    result = deliver_fixture(1, 'missing fixture')
-#    assert_empty(result)
-#  end
+  def test_missing_fixture
+    result = deliver_fixture(1, 'missing fixture')
+    assert_empty(result)
+  end
 
   protected
 
