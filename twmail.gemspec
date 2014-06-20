@@ -20,5 +20,6 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'multi_json'
 
   gem.add_development_dependency 'guard-test'
+  gem.add_development_dependency 'guard-bundler'
   gem.add_development_dependency 'pry'
 end

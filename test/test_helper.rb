@@ -1,5 +1,5 @@
 require 'bundler'
-Bundler.require
+#Bundler.require
 
 require 'twtest'
 require 'test/unit'

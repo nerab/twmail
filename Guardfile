@@ -3,7 +3,7 @@ guard 'bundler' do
   watch(/^.+\.gemspec/)
 end
 
-guard :test do
+guard :test, :test_paths => ['test/unit'] do
   watch(%r{^lib/(.+)\.rb$}){|m| "test/#{m[1]}_test.rb"}
   watch(%r{^test/unit/test_(.+)\.rb$})
   watch('test/test_helper.rb'){"test"}

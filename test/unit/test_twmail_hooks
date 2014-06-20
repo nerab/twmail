@@ -32,3 +32,4 @@ assert_equal "Send some test mails" "$SUBJECT"
 # Clean up
 rm -Rf $DATA_DIR
 rm -Rf $TASKRC
+export TASKRC=
