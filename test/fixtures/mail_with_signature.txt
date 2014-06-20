@@ -1,0 +1,29 @@
+Date: Sat, 09 Jun 2012 21:09:29 +0200
+From: king.crown@nigerian-lottery.com
+To: you@example.com
+Message-ID: <4fd39f695c947_827580443948558fd@example.com>
+Subject: Send some test mails
+Mime-Version: 1.0
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi there,
+I am writing to you in order to inform you that you have
+won the Nigerian Lottery.
+
+In order to claim your win, please transfer the handling
+fee to the following account:
+
+AMOUNT: EUR 1234,56
+IBAN: AT571234500234573201
+BIC: ATBAATWWXXX
+
+Sincerely
+
+Toast Bread
+King Crown
+Head of The Nigerian Lottery
+
+-- 
+Foo
