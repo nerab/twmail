@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'mail'
 
 # This script is a dead-simple Mail Delivery Agent (MDA) that exports the parts of the received email as
 # environment variables and calls a shell script that can make use of these variables to further process
