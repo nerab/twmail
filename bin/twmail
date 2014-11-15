@@ -1,8 +1,5 @@
 #!/usr/bin/env ruby
 
-require 'bundler'
-Bundler.require
-
 # This script is a dead-simple Mail Delivery Agent (MDA) that parses the received email
 # and creates a new TaskWarrior task from the subject of the mail.
 mail = Mail.new(ARGF.read)

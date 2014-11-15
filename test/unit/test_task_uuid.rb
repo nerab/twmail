@@ -69,10 +69,10 @@ class TaskUUID < TaskWarriorCommand
 
   def executable
     # The gem version that uses the binstub fails if the script is not Ruby
-    'task-uuid'
+    #'task-uuid'
 
     # The local version, called directly, works fine even if it's a Bash script
-    #File.join(File.dirname(__FILE__), '..', '..', 'bin', 'task-uuid')
+    File.join(File.dirname(__FILE__), '..', '..', 'bin', 'task-uuid')
   end
 
   def default_args

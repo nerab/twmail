@@ -13,11 +13,11 @@
 1. Edit `~/.fetchmailrc` and adjust mail account settings (the example was made for Google Mail account). If in doubt, consult the `fetchmail` documentation, e.g. by executing `man fetchmailconf` in a terminal.
 
 ## Motivation
-I would like to add new tasks to my TaskWarrior inbox from remote places where I don't have immediate access to my personal TaskWarrior database; e.g. from my iPhone, from work (where I don't have access to my personal TaskWarrior installation) or from another computer. 
+I would like to add new tasks to my TaskWarrior inbox from remote places where I don't have immediate access to my personal TaskWarrior database; e.g. from my iPhone, from work (where I don't have access to my personal TaskWarrior installation) or from another computer.
 
 Using eMail for this looks like a great candidate:
 
-1. I don't want to (or cannot) install TaskWarrior on all the places and machines where I would like to add tasks from. Sending a note as eMail is pretty much universally available. 
+1. I don't want to (or cannot) install TaskWarrior on all the places and machines where I would like to add tasks from. Sending a note as eMail is pretty much universally available.
 1. Many applications were not made for integration with TaskWarrior. But even the dumbest iPhone app can forward text or a URL via eMail.
 1. eMail is asynchronous by design (fire and forget). Even if disconnected from the net, I can send eMail and the system will deliver it on the very next occassion.
 
@@ -58,7 +58,7 @@ TODO Do we need a dedicated dead-letter queue for all mails fetched, but not suc
 ## Alternatives
 One might think of more elaborate applications that do more clever things, but I wanted to create this solution with as few external dependencies as possible. `fetchmail` is available on all Unices, and who can afford to live without TaskWarrior anyway? I also played with the thought of a central tasks server that receives mail from services like CloudMailIn and auto-adds them to the server, but the result would not be much different (besides being more complex) to the solution presented here: No task will be fetched into TaskWarrior until the machine with the TaskWarrior database is online.
 
-Another alternative would be to convert the email to JSON and use TaskWarrior's import command. This would allow to create and annotate a new task in one step without the [task-uuid](http://taskwarrior.org/boards/1/topics/2252) workaround.
+Another alternative would be to convert the email to JSON and use TaskWarrior's import command. This would allow to create and annotate a new task in one step without the `bin/task-uuid` workaround.
 
 ## Advanced Usage
 ### Filtering and Routing
