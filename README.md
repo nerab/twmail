@@ -80,7 +80,7 @@ The approach chosen for `twmail` also addresses SPAM filtering. Handling that re
 ### Hooks
 `twmail` comes with an advanced implementation that supports hooks. This makes handling incoming mail very simple for someone familiar with shell scripting, and there is no need to edit the `twmail` scripts in order to customize its behavior.
 
-When `fetchmail` is configured to use `twmail_hooks` instead of `twmail`, the script will call the `twmail_hook` command (must be in the user's `$PATH`). Within the hook script, the fields of the parsed email are available as environment variables:
+When `fetchmail` is configured to use `twmail-hook` instead of `twmail`, the script will call the `twmail-hook` command (must be in the user's `$PATH`). Within the hook script, the fields of the parsed email are available as environment variables:
 
     TWMAIL_DATE
     TWMAIL_MESSAGE_ID
@@ -93,7 +93,7 @@ Have a look at test/helpers/test_hook for a very simple implementation.
 
 If you prefer a hook with a different name, specify it in the `TWMAIL_HOOK` environment variable in your `.fetchmailrc`. For example, if your home directory contains a script called `taskwarrior-import.sh`, edit the `mda` line to look like this:
 
-    mda TWMAIL_HOOK=~/taskwarrior-import.sh twmail_hooks
+    mda TWMAIL_HOOK=~/taskwarrior-import.sh twmail-hook
 
 ## Housekeeping
 By default `fetchmail` will mark retrieved messages as read, but leave them on the server. For housekeeping purposes, it may be desirable to delete messages from the server once they were successfully imported into TaskWarrior.

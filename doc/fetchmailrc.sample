@@ -1,0 +1,4 @@
+poll "imap.gmail.com" proto imap port 993
+user "tasks@example.com" password "passw0rd"
+ssl
+mda twmail

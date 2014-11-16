@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #
-# Unit test for twmail_hooks
+# Unit test for twmail-hook
 #
 
 # Data locations
@@ -19,10 +19,10 @@ verbose=off
 HERE
 
 # Canonical path to test_hook
-export TWMAIL_HOOK=$DIRNAME/../helpers/test_hook
+export twmail-hook=$DIRNAME/../helpers/test_hook
 
 # Create new task using mail fixture
-cat $DIRNAME/../fixtures/mail01.txt | $DIRNAME/../../bin/twmail_hooks
+cat $DIRNAME/../fixtures/mail01.txt | $DIRNAME/../../bin/twmail-hook
 
 # Read back and run assertions
 SUBJECT=$(task export | ruby -r json -e "puts JSON[ARGF.read].first['description']")

@@ -1,9 +1,24 @@
 #!/usr/bin/env ruby
 
 require 'mail'
+require 'optparse'
+require 'twmail'
 
-# This script is a dead-simple Mail Delivery Agent (MDA) that parses the received email
-# and creates a new TaskWarrior task from the subject of the mail.
+OptionParser.new do |opts|
+  banner = <<-HERE
+#{opts.program_name} is a simple Mail Delivery Agent (MDA) that parses received mail and creates a new TaskWarrior task from the subject of the mail.
+
+USAGE
+
+Configure fetchmail to use #{opts.program_name} as MDA:
+
+    # ~/.fetchmailrc
+    mda #{opts.program_name}
+HERE
+  opts.banner = banner#.wrap
+  opts.version = TaskWarriorMail::VERSION
+end.parse!
+
 mail = Mail.new(ARGF.read)
 task_uuid = %x[task-uuid \"#{mail.subject}\"]
 
