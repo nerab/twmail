@@ -13,6 +13,7 @@
 1. Edit `~/.fetchmailrc` and adjust mail account settings (the example was made for Google Mail account). If in doubt, consult the `fetchmail` documentation, e.g. by executing `man fetchmailconf` in a terminal.
 
 ## Motivation
+
 I would like to add new tasks to my TaskWarrior inbox from remote places where I don't have immediate access to my personal TaskWarrior database; e.g. from my iPhone, from work (where I don't have access to my personal TaskWarrior installation) or from another computer.
 
 Using eMail for this looks like a great candidate:
@@ -24,6 +25,7 @@ Using eMail for this looks like a great candidate:
 What is missing from a TaskWarrior perspective right now is a way to add these mails to a TaskWarrior installation automatically.
 
 ## Architecture
+
 The simplest solution I could come up with is this:
 
 1. A dedicated email account is used to collect the tasks.
@@ -43,25 +45,24 @@ As a prerequisite, TaskWarrior is assumed to be installed and configured. With t
 
 The solution presented here maintains a one-to-one relation between the INBOX of an mail account and the TaskWarrior database.
 
-TODO Describe how to use fetchmail's daemon mode
-
-TODO Describe how to use fetchmail's IMAP IDLE flag
-
 ## Components
+
 Mail fetching is done with `fetchmail`, a proven solution available on all major Unices incl. MacOS. It will be configured to use the `twmail` script as a mail delivery agent (mda), which means nothing more than that `fetchmail` fetches the mail from the configured account and hands it over to our script. There is no further storage of the received mails except in TaskWarrior.
 
 ## Error Handling
+
 If our MDA returns non-zero, `fetchmail` will not assume the message to be processed and it will try again.
 
-TODO Do we need a dedicated dead-letter queue for all mails fetched, but not successfully processed?
-
 ## Alternatives
+
 One might think of more elaborate applications that do more clever things, but I wanted to create this solution with as few external dependencies as possible. `fetchmail` is available on all Unices, and who can afford to live without TaskWarrior anyway? I also played with the thought of a central tasks server that receives mail from services like CloudMailIn and auto-adds them to the server, but the result would not be much different (besides being more complex) to the solution presented here: No task will be fetched into TaskWarrior until the machine with the TaskWarrior database is online.
 
 Another alternative would be to convert the email to JSON and use TaskWarrior's import command. This would allow to create and annotate a new task in one step without the `bin/task-uuid` workaround.
 
 ## Advanced Usage
+
 ### Filtering and Routing
+
 Many more advanced use cases like filtering and routing can be implemented on the mail server side. There are plenty of user interfaces for routing eMails based on their subject, sender, body text, etc. The simplest way to integrate these features with `twmail` is to use IMAP folders. After all filtering and routing, each eMail must end up in a dedicated IMAP folder (by default, all tasks are fetched from the INBOX folder). `twmail` can then be configured to do different things depending on which IMAP folder a mail came from.
 
 As an example, here is a simple way to route eMails to different projects in TaskWarrior, based on their subject line:
@@ -73,11 +74,10 @@ As an example, here is a simple way to route eMails to different projects in Tas
   1. "Get Rich Fast" folder if the mail subject contains "project:GetRichFast"
 1. Tell `twmail` to fetch mails from the "Build Bikeshed", "Reading List", and "Get Rich Fast" IMAP folders (in addition to the INBOX):
 
-TODO Continue description ... may need tracepolls for it.
-
 The approach chosen for `twmail` also addresses SPAM filtering. Handling that remains the responsibility of the mail server. Anything that makes it to the INBOX is treated as task.
 
 ### Hooks
+
 `twmail` comes with an advanced implementation that supports hooks. This makes handling incoming mail very simple for someone familiar with shell scripting, and there is no need to edit the `twmail` scripts in order to customize its behavior.
 
 When `fetchmail` is configured to use `twmail-hook` instead of `twmail`, the script will call the `twmail-hook` command (must be in the user's `$PATH`). Within the hook script, the fields of the parsed email are available as environment variables:
@@ -96,6 +96,7 @@ If you prefer a hook with a different name, specify it in the `TWMAIL_HOOK` envi
     mda TWMAIL_HOOK=~/taskwarrior-import.sh twmail-hook
 
 ## Housekeeping
+
 By default `fetchmail` will mark retrieved messages as read, but leave them on the server. For housekeeping purposes, it may be desirable to delete messages from the server once they were successfully imported into TaskWarrior.
 
 There are two ways to achieve this:
@@ -106,12 +107,5 @@ There are two ways to achieve this:
 Which option to choose depends on the capabilities of your mail server (Google Mail cannot handle mails based on their read status), and on your level of trust in `twmail`. I recommend leaving mails on the server until you are confident that everything works as expected.
 
 ## Testing
+
 `twmail` comes with a basic set of tests. Execute them by running `rake` in the cloned source repo.
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
