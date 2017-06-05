@@ -1,3 +1,4 @@
+require 'shellwords'
 require 'open3'
 require 'test/unit'
 
@@ -54,7 +55,7 @@ class TaskWarriorCommand < Command
   end
 
   def default_args
-    {'rc.verbose' => 'off', 'rc.json.array' => 'on'}
+    {'rc.verbose' => 'nothing', 'rc.json.array' => 'on'}
   end
 
   def executable
@@ -80,13 +81,12 @@ class TaskUUID < TaskWarriorCommand
   end
 end
 
-class TestTaskUUID < Test::Unit::TestCase#Minitest::Test
+class TestTaskUUID < Test::Unit::TestCase
   def setup
     @tw = TaskWarriorCommand.new
     @tw.data_dir = Dir.mktmpdir(name)
 
     raise "TASKRC must not be set, but it is #{ENV['TASKRC']}" if ENV['TASKRC']
-
   end
 
   def teardown
@@ -98,7 +98,7 @@ class TestTaskUUID < Test::Unit::TestCase#Minitest::Test
     assert(status.success?)
     assert_empty(err)
     assert_not_empty(out)
-    assert_equal('2.3.0', out.chomp)
+    assert_match(/\d\.\d\.\d/, out.chomp)
   end
 
   def test_empty
@@ -112,7 +112,7 @@ class TestTaskUUID < Test::Unit::TestCase#Minitest::Test
   def test_task_uuid
     task_uuid = TaskUUID.new
     task_uuid.data_dir = Dir.mktmpdir(name)
-    out, err, status = task_uuid.create('foo bar')
+    out, err, _ = task_uuid.create('foo bar')
     assert_empty(err)
     assert_not_empty(out)
     assert_match(/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}/, out.chomp)

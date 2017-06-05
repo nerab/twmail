@@ -21,7 +21,6 @@ end.parse!
 
 mail = Mail.new(ARGF.read)
 task_uuid = %x[task-uuid \"#{mail.subject}\"]
-
 body = mail.text? ? mail.body.decoded : mail.text_part.body.decoded
 
 SEPARATOR = '-- '

@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 # use local twtest while developing
-# gem "twtest", :path => "../twtest"
+group :development do
+  gem "twtest", :path => "../twtest"
+end
 
-# Specify your gem's dependencies in twmail.gemspec
 gemspec
