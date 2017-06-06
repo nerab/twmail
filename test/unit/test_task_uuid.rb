@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'shellwords'
 require 'open3'
 require 'test/unit'
 
 class Command
-  def exec(cmd = '', args = {})
-    env.each{|k,v| ENV[k.to_s] = v.to_s}
+  def exec(cmd='', args={})
+    env.each { |k, v| ENV[k.to_s] = v.to_s }
     line = build_line(cmd, args)
     Open3.capture3(line)
   end
@@ -23,18 +25,18 @@ class Command
 
   private
 
-  def build_line(cmd = '', args = {})
-    [].tap{|line|
+  def build_line(cmd='', args={})
+    [].tap { |line|
       line << executable
-      line << default_args.merge(args).map{|k,v| "#{Shellwords.escape(k.strip)}=#{Shellwords.escape(v.strip)}"}.join(' ')
+      line << default_args.merge(args).map { |k, v| "#{Shellwords.escape(k.strip)}=#{Shellwords.escape(v.strip)}" }.join(' ')
       line << cmd.strip
-      line.reject!{|part| part.empty?}
+      line.reject!(&:empty?)
     }.join(' ')
   end
 
   def overrides(env)
     intersection = env.keys.to_set & ENV.keys.to_set
-    ENV.select{|k,v| intersection.include?(k)}
+    ENV.select { |k, v| intersection.include?(k) }
   end
 end
 
@@ -51,11 +53,11 @@ class TaskWarriorCommand < Command
 
   def env
     raise "data_dir must not be empty for '#{executable}'" if @data_dir.nil? || data_dir.empty?
-    {TASKDATA: @data_dir}
+    { TASKDATA: @data_dir }
   end
 
   def default_args
-    {'rc.verbose' => 'nothing', 'rc.json.array' => 'on'}
+    { 'rc.verbose' => 'nothing', 'rc.json.array' => 'on' }
   end
 
   def executable
@@ -70,7 +72,7 @@ class TaskUUID < TaskWarriorCommand
 
   def executable
     # The gem version that uses the binstub fails if the script is not Ruby
-    #'task-uuid'
+    # 'task-uuid'
 
     # The local version, called directly, works fine even if it's a Bash script
     File.join(File.dirname(__FILE__), '..', '..', 'bin', 'task-uuid')

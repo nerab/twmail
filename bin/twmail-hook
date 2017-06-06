@@ -1,28 +1,30 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
+
 require 'mail'
 require 'optparse'
 require 'twmail'
 
 OptionParser.new do |opts|
-  banner = <<-HERE
-#{opts.program_name} is a simple Mail Delivery Agent (MDA) that that exports the parts of the received email as environment variables and calls a shell script that can make use of these variables to further process the mail.
+  banner = <<~HERE
+    #{opts.program_name} is a simple Mail Delivery Agent (MDA) that that exports the parts of the received email as environment variables and calls a shell script that can make use of these variables to further process the mail.
 
-USAGE
+    USAGE
 
-  Configure fetchmail to use #{opts.program_name} as MDA:
+      Configure fetchmail to use #{opts.program_name} as MDA:
 
-    # ~/.fetchmailrc
-    mda #{opts.program_name}
+        # ~/.fetchmailrc
+        mda #{opts.program_name}
 
 HERE
-  opts.banner = banner#.wrap
+  opts.banner = banner # .wrap
   opts.version = TaskWarriorMail::VERSION
 end.parse!
 
 mail = Mail.new(ARGF.read)
 
 # Expose mail properties as environment variables
-%w[date message_id from to subject body].each{|field|
+%w[date message_id from to subject body].each { |field|
   value = mail.send(field.to_sym)
   value = value.join(',') if value.respond_to?(:join)
   ENV["TWMAIL_#{field.upcase}"] = Shellwords.escape(value.to_s)
@@ -31,7 +33,7 @@ mail = Mail.new(ARGF.read)
 # The hook to be executed is read from the environment variable TWMAIL_HOOK
 # If none is set, this script will assume that twmail_on_new_mail is in the
 # $PATH and executable.
-cmd = ENV.fetch("TWMAIL_HOOK", 'twmail-hook')
+cmd = ENV.fetch('TWMAIL_HOOK', 'twmail-hook')
 
 # Call hook script
-%x[#{cmd}]
+`#{cmd}`

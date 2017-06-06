@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class TestHelpers < TaskWarrior::Test::Integration::TestCase
@@ -67,8 +69,8 @@ class TestHelpers < TaskWarrior::Test::Integration::TestCase
   def deliver_fixture(status, fixture)
     twmail = File.join(File.dirname(__FILE__), '..', '..', 'bin', 'twmail')
     ENV['TASKRC'] = @taskrc_file
-    output = %x[cat #{fixture} | #{twmail}]
-    assert_equal(status, $?.exitstatus)
+    output = `cat #{fixture} | #{twmail}`
+    assert_equal(status, $CHILD_STATUS.exitstatus)
     output
   end
 

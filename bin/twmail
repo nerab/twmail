@@ -1,29 +1,30 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 require 'mail'
 require 'optparse'
 require 'twmail'
 
 OptionParser.new do |opts|
-  banner = <<-HERE
-#{opts.program_name} is a simple Mail Delivery Agent (MDA) that parses received mail and creates a new TaskWarrior task from the subject of the mail.
+  banner = <<~HERE
+    #{opts.program_name} is a simple Mail Delivery Agent (MDA) that parses received mail and creates a new TaskWarrior task from the subject of the mail.
 
-USAGE
+    USAGE
 
-Configure fetchmail to use #{opts.program_name} as MDA:
+    Configure fetchmail to use #{opts.program_name} as MDA:
 
-    # ~/.fetchmailrc
-    mda #{opts.program_name}
+        # ~/.fetchmailrc
+        mda #{opts.program_name}
 HERE
-  opts.banner = banner#.wrap
+  opts.banner = banner # .wrap
   opts.version = TaskWarriorMail::VERSION
 end.parse!
 
 mail = Mail.new(ARGF.read)
-task_uuid = %x[task-uuid \"#{mail.subject}\"]
+task_uuid = `task-uuid \"#{mail.subject}\"`
 body = mail.text? ? mail.body.decoded : mail.text_part.body.decoded
 
 SEPARATOR = '-- '
-body = body.split(SEPARATOR)[0] if (body.include?(SEPARATOR))
+body = body.split(SEPARATOR)[0] if body.include?(SEPARATOR)
 
-%x[task '#{task_uuid}' annotate \"#{body}\"]
+`task '#{task_uuid}' annotate \"#{body}\"`
