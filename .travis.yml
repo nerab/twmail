@@ -1,0 +1,11 @@
+language: ruby
+
+rvm:
+  - 2.4.1
+
+before_script:
+ - mkdir ~/.task
+ - echo data.location=~/.task > ~/.taskrc
+
+before_install:
+ - sudo apt-get install task
