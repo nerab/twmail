@@ -1,5 +1,7 @@
 # twmail
 
+[![Build Status](https://travis-ci.org/nerab/TaskWarriorMail.svg?branch=master)](https://travis-ci.org/nerab/TaskWarriorMail)
+
 `twmail` allows you to mail new tasks to your TaskWarrior inbox.
 
 ## Installation
