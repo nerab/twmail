@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ['lib']
   gem.version       = TaskWarriorMail::VERSION
 
-  gem.add_dependency 'mail'
+  gem.add_dependency 'mail', '> 2.6.5'
 
   gem.add_development_dependency 'twtest', '> 0.0.6'
   gem.add_development_dependency 'guard-test'
