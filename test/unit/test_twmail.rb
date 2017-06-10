@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class TestHelpers < TaskWarrior::Test::Integration::TestCase
+class TestHelpers < TaskWarrior::Test::Integration::Test
   def teardown
     ENV['TASKRC'] = nil
     super

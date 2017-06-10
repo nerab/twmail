@@ -18,7 +18,7 @@ OptionParser.new do |opts|
       4. Remove the temporary tag from the new task
 
       5. Print the UUID to STDOUT
-HERE
+  HERE
   opts.banner = banner
   opts.version = TaskWarriorMail::VERSION
 end.parse!
@@ -34,7 +34,7 @@ tag = 'tag_' + SecureRandom.hex.tr('-', '')
 task_uuid = `task rc.verbose=nothing +#{tag} _uuid`.chomp
 
 # 4. Remove the temporary tag from the new task
-`task rc.verbose=nothing #{task_uuid} modify -#{tag.to_s}`
+`task rc.verbose=nothing #{task_uuid} modify -#{tag}`
 
 # 5. Print the UUID to STDOUT
 puts task_uuid

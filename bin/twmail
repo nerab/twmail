@@ -15,7 +15,7 @@ OptionParser.new do |opts|
 
         # ~/.fetchmailrc
         mda #{opts.program_name}
-HERE
+  HERE
   opts.banner = banner # .wrap
   opts.version = TaskWarriorMail::VERSION
 end.parse!

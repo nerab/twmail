@@ -16,7 +16,7 @@ OptionParser.new do |opts|
         # ~/.fetchmailrc
         mda #{opts.program_name}
 
-HERE
+  HERE
   opts.banner = banner # .wrap
   opts.version = TaskWarriorMail::VERSION
 end.parse!
@@ -24,11 +24,11 @@ end.parse!
 mail = Mail.new(ARGF.read)
 
 # Expose mail properties as environment variables
-%w[date message_id from to subject body].each { |field|
+%w[date message_id from to subject body].each do |field|
   value = mail.send(field.to_sym)
   value = value.join(',') if value.respond_to?(:join)
   ENV["TWMAIL_#{field.upcase}"] = Shellwords.escape(value.to_s)
-}
+end
 
 # The hook to be executed is read from the environment variable TWMAIL_HOOK
 # If none is set, this script will assume that twmail_on_new_mail is in the
