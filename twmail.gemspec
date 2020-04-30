@@ -20,7 +20,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'mail'
 
-  gem.add_development_dependency 'twtest', '~> 1.1.0'
+  gem.add_development_dependency 'twtest', '~> 1.2.0'
   gem.add_development_dependency 'guard-test'
   gem.add_development_dependency 'guard-bundler'
   gem.add_development_dependency 'pry'
