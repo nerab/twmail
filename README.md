@@ -14,6 +14,8 @@
 1. If you don't have a `~/.fetchmailrc` yet, copy `doc/fetchmailrc.sample` to `~/.fetchmailrc`
 1. Edit `~/.fetchmailrc` and adjust mail account settings (the example was made for Google Mail account). If in doubt, consult the `fetchmail` documentation, e.g. by executing `man fetchmailconf` in a terminal.
 
+If Docker is your thing, check out [eyenx/docker-taskwarriormail](https://github.com/eyenx/docker-taskwarriormail).
+
 ## Motivation
 
 I would like to add new tasks to my TaskWarrior inbox from remote places where I don't have immediate access to my personal TaskWarrior database; e.g. from my iPhone, from work (where I don't have access to my personal TaskWarrior installation) or from another computer.
